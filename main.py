@@ -1,6 +1,5 @@
 # Set up and run this Streamlit App
 import streamlit as st
-from logics.customer_query_handler import process_user_message
 from logics.test import generate_answer
 from utility import check_password
 

@@ -27,3 +27,11 @@ container2.write(
     A detailed page outlining the project scope, objectives, data sources, and features.
 
     """)
+
+container3 = st.container(border=True)
+container3.write(
+    """
+    Methodology Page:
+    A comprehensive explanation of the data flows and implementation details.
+    A flowchart illustrating the process flow for each of the use cases in the application. For example, if the application has two main use cases: a) chat with information and b) intelligent search, each of these use cases should have its own flowchart.
+    """)

@@ -24,12 +24,7 @@ def on_btn_click():
     del st.session_state.generated[:]
 
 message1 = """
-The area of Yishun stands out as the cheapest for HDB resale prices in Singapore, 
-with an average resale price of approximately $375,347. 
-This indicates that Yishun is a favorable option for prospective buyers seeking affordable housing solutions. 
-Compared to other regions such as Bukit Merah, Queenstown, and Toa Payoh, which report higher average resale prices, 
-Yishun offers competitive and appealing pricing for budget-conscious homebuyers. 
-Therefore, for those looking to invest in HDB resale flats, considering Yishun would be advantageous due to its lower cost and the potential for future urban development enhancing property values.
+The area of Yishun stands out as the cheapest for HDB resale prices in Singapore, with an average resale price of approximately $375,347. This indicates that Yishun is a favorable option for prospective buyers seeking affordable housing solutions. Compared to other regions such as Bukit Merah, Queenstown, and Toa Payoh, which report higher average resale prices, Yishun offers competitive and appealing pricing for budget-conscious homebuyers. Therefore, for those looking to invest in HDB resale flats, considering Yishun would be advantageous due to its lower cost and the potential for future urban development enhancing property values.
 """
 
 st.session_state.setdefault(

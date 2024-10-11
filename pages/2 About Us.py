@@ -15,5 +15,15 @@ container.write(
     1. Enter your prompt in the text area. \n
     2. Click the 'Submit' button. \n
     3. The app will generate a text completion based on your prompt.
+    Instruction \n
+    A detailed page outlining the project scope, objectives, data sources, and features.
                 
+    """)
+
+container2 = st.container(border=True)
+container2.write(
+    """
+    Instruction \n
+    A detailed page outlining the project scope, objectives, data sources, and features.
+
     """)

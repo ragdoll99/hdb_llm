@@ -9,6 +9,11 @@ st.set_page_config(
     layout="wide",
     page_title="HDB resale Intelligent Bot"
 )
+
+# Do not continue if check_password is not True.  
+if not check_password():  
+    st.stop()
+
 # endregion <--------- Streamlit App Configuration --------->
 
 st.title("HDB resale Intelligent Bot")
@@ -24,7 +29,11 @@ def on_btn_click():
     del st.session_state.generated[:]
 
 message1 = """
-The area of Yishun stands out as the cheapest for HDB resale prices in Singapore, with an average resale price of approximately $375,347. This indicates that Yishun is a favorable option for prospective buyers seeking affordable housing solutions. Compared to other regions such as Bukit Merah, Queenstown, and Toa Payoh, which report higher average resale prices, Yishun offers competitive and appealing pricing for budget-conscious homebuyers. Therefore, for those looking to invest in HDB resale flats, considering Yishun would be advantageous due to its lower cost and the potential for future urban development enhancing property values.
+The area of Yishun stands out as the cheapest for HDB resale prices in Singapore, with an average resale price of approximately $375,347. 
+
+This indicates that Yishun is a favorable option for prospective buyers seeking affordable housing solutions. Compared to other regions such as Bukit Merah, Queenstown, and Toa Payoh, which report higher average resale prices, Yishun offers competitive and appealing pricing for budget-conscious homebuyers. 
+
+Therefore, for those looking to invest in HDB resale flats, considering Yishun would be advantageous due to its lower cost and the potential for future urban development enhancing property values.
 """
 
 message2 = """
@@ -57,22 +66,58 @@ Post-Purchase Obligations: Be aware of ongoing commitments like the Minimum Occu
 By following these steps, you can navigate the process efficiently and secure your new home, ensuring compliance with all necessary legal and financial requirements. Engaging with professionals can also aid in a smoother transition into homeownership.
 """
 message3="""
-The resale HDB that is closest to a hawker centre is located at 32 New Market Road, in the Central Area. This property is a 3-room flat with a resale price of $392,000. Remarkably, it is situated merely 1.87 meters away from the nearest hawker centre, offering unparalleled convenience for residents who prioritize access to dining and local amenities. With a floor area of 66 sqm, this flat represents an attractive option for potential buyers seeking affordability in a bustling urban environment. Its prime location not only enhances livability but also ensures easy access to public transportation and grocery stores. Given these factors, the resale HDB at 32 New Market Road stands out as the optimal choice for those looking to live close to hawker centres.
+The resale HDB that is closest to a hawker centre is located at 32 New Market Road, in the Central Area. This property is a 3-room flat with a resale price of $392,000. 
+
+Remarkably, it is situated merely 1.87 meters away from the nearest hawker centre, offering unparalleled convenience for residents who prioritize access to dining and local amenities. 
+
+With a floor area of 66 sqm, this flat represents an attractive option for potential buyers seeking affordability in a bustling urban environment. 
+
+Its prime location not only enhances livability but also ensures easy access to public transportation and grocery stores. Given these factors, the resale HDB at 32 New Market Road stands out as the optimal choice for those looking to live close to hawker centres.
+"""
+
+message4="""
+When applying for Housing and Development Board (HDB) Flat Eligibility (HFE) in Singapore, the following documents and information are required to ensure a successful application:
+
+Identity Documents:
+
+National Registration Identity Card (NRIC) for all applicants and essential family members.
+Income Documents:
+
+Recent payslips from the last three months.
+Income tax statements or Notice of Assessment for self-employed individuals.
+Documentation for any other income sources, such as rental income or dividends.
+Family Nucleus:
+
+Details about family members who will reside in the flat, including their NRICs and relationships to the applicant.
+Relationship Documents:
+
+Marriage Certificate if applying with a spouse.
+Divorce Certificate if applicable.
+Eligibility Criteria:
+
+Ensure compliance with citizenship, age, and family nucleus requirements outlined by HDB.
+Application Form:
+
+A completed HDB application form, usually available online.
+Additional Documentation:
+
+Any relevant supplementary documents based on individual circumstances, such as adoption papers or a death certificate of a spouse.
+To enhance the chances of securing eligibility, it’s advised to systematically gather these documents. Additionally, applicants should regularly check HDB's official website for any updates to ensure compliance with evolving application requirements. By being well-prepared, applicants can facilitate a smoother application process.
 """
 
 st.session_state.setdefault(
     'past', 
     ['Which area of hdb resale is cheaper',
      'What is the process of buying resale hdb', 
-     'which resale hdb has the nearest distance to hawker centre', 
-     'and video of it']
+     'Which resale hdb has the nearest distance to hawker centre', 
+     'What is needed when applying for HFE']
 )
 st.session_state.setdefault(
     'generated', 
     [{'type': 'normal', 'data': message1},
      {'type': 'normal', 'data': message2}, 
      {'type': 'normal', 'data': message3}, 
-     {'type': 'normal', 'data': f'c'}]
+     {'type': 'normal', 'data': message4}]
 )
 
 chat_placeholder = st.empty()

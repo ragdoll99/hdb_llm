@@ -2,6 +2,7 @@
 import streamlit as st
 from logics.test import generate_answer
 from utility import check_password
+import replicate
 
 # newly added
 import sqlite3

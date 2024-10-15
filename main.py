@@ -1,6 +1,6 @@
 # Set up and run this Streamlit App
 import streamlit as st
-from logics.test import generate_answer
+from logics.crew import generate_answer
 from utility import check_password
 import replicate
 
@@ -22,7 +22,7 @@ if not check_password():
 
 # endregion <--------- Streamlit App Configuration --------->
 
-st.title("HDB resale Intelligent Bot")
+st.title("💬 HDB resale Intelligent Bot")
 st.write("Ask me anything about HDB resale transaction")
 
 
@@ -99,39 +99,69 @@ st.write("Ask me anything about HDB resale transaction")
 #     st.text_input("User Input:", on_change=on_input_change, key="user_input")
 
 # Store LLM generated responses
-if "messages" not in st.session_state.keys():
-    st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
+# if "messages" not in st.session_state.keys():
+#     st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
+
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
 # Display or clear chat messages
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.write(message["content"])
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"]).write(msg["content"])
 
-def clear_chat_history():
-    st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
-st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
+# for message in st.session_state.messages:
+#     with st.chat_message(message["role"]):
+#         st.write(message["content"])
+
+# def clear_chat_history():
+#     st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
+# st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
 
 # User-provided prompt
-if prompt := st.chat_input():
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.write(prompt)
+# if prompt := st.chat_input():
+#     st.session_state.messages.append({"role": "user", "content": prompt})
+#     with st.chat_message("user"):
+#         st.write(prompt)
 
 # Generate a new response if last message is not from assistant
-if st.session_state.messages[-1]["role"] != "assistant":
-    with st.chat_message("assistant"):
-        with st.spinner("Thinking..."):
-            response = generate_answer(prompt)
-            placeholder = st.empty()
-            full_response = ''
-            for item in response:
-                full_response += item
-                placeholder.markdown(full_response)
-            placeholder.markdown(full_response)
-    message = {"role": "assistant", "content": full_response}
-    st.session_state.messages.append(message)
-
-
+# if st.session_state.messages[-1]["role"] != "assistant":
+#     with st.chat_message("assistant"):
+#         with st.spinner("Thinking..."):
+#             response = generate_answer(prompt)
+#             placeholder = st.empty()
+#             full_response = ''
+#             for item in response:
+#                 full_response += item
+#                 placeholder.markdown(full_response)
+#             placeholder.markdown(full_response)
+#     message = {"role": "assistant", "content": full_response}
+#     st.session_state.messages.append(message)
     
+# Load the environment variables
+# If the .env file is not found, the function will return `False
+    
+
+from dotenv import load_dotenv
+from openai import OpenAI
+
+if load_dotenv('.env'):
+   # for local development
+   OPENAI_KEY = os.getenv('OPENAI_API_KEY')
+else:
+   OPENAI_KEY = st.secrets['OPENAI_API_KEY']
+
+
+if prompt := st.chat_input():
+    client = OpenAI(api_key=OPENAI_KEY)
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.chat_message("user").write(prompt)
+    response = generate_answer(prompt)
+    # response = client.chat.completions.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
+    # msg = response.choices[0].message.content
+    # st.session_state.messages.append({"role": "assistant", "content": msg})
+    # st.chat_message("assistant").write(msg)
+    st.session_state.messages.append({"role": "assistant", "content": response})
+    st.chat_message("assistant").write(response)
+###
 ###

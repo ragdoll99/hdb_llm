@@ -21,7 +21,7 @@ if not check_password():
 
 # endregion <--------- Streamlit App Configuration --------->
 
-st.title("💬 HDB resale Intelligent Bot")
+st.title(":blue[💬 HDB resale Intelligent Bot]")
 st.write("Ask me anything about HDB resale transaction")
 
 

@@ -21,7 +21,7 @@ st.set_page_config(layout="wide")
 #load dataframes
 df_hdb_resale = get_data_hdb_resale()
 
-st.title('HDB Resale transaction explorer')
+st.title(':blue[HDB Resale transaction explorer]')
 st.markdown("""
 This app performs visualization from the open data from the SG HDB Resale transaction
 """)

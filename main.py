@@ -73,11 +73,11 @@ def on_btn_click():
 
 st.session_state.setdefault(
     'past', 
-    []
+    ["aaa"]
 )
 st.session_state.setdefault(
     'generated', 
-    []
+    ["bbb"]
 )
 
 chat_placeholder = st.empty()

@@ -157,9 +157,10 @@ if prompt := st.chat_input():
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
     if st.session_state.messages[-1]["role"] != "assistant":
-        with st.chat_message("assistant"):
-            with st.spinner("Thinking..."):
-                response = generate_answer(prompt)
+        # with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):        
+            # with st.spinner("Thinking..."):
+            response = generate_answer(prompt)
     st.session_state.messages.append({"role": "assistant", "content": response})
     st.chat_message("assistant").write(response)
 ##

@@ -7,7 +7,7 @@ from streamlit_chat import message
 # region <--------- Streamlit App Configuration --------->
 st.set_page_config(
     layout="wide",
-    page_title="HDB resale Intelligent Bot"
+    page_title="💬 HDB resale Intelligent Bot"
 )
 
 # Do not continue if check_password is not True.  
@@ -16,7 +16,13 @@ if not check_password():
 
 # endregion <--------- Streamlit App Configuration --------->
 
-st.title("HDB resale Intelligent Bot")
+# region <--------- Streamlit App Configuration --------->
+st.set_page_config(
+    layout="wide",
+    page_title="💬 HDB resale Intelligent Bot"
+)
+
+st.title("💬 HDB resale Intelligent Bot")
 st.write("Ask me anything about HDB resale transaction")
 
 def on_input_change():

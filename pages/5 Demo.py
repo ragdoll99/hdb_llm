@@ -16,7 +16,7 @@ if not check_password():
 
 # endregion <--------- Streamlit App Configuration --------->
 
-# region <--------- Streamlit App Configuration --------->
+    
 st.set_page_config(
     layout="wide",
     page_title="💬 HDB resale Intelligent Bot"

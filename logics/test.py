@@ -28,7 +28,8 @@ client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 os.environ['OPENAI_MODEL_NAME'] = "gpt-4o-mini"
 
 # read csv
-url = 'https://drive.google.com/file/d/19P2q3RyermaGJuD88vq1ZxcMjotpq18h/view?usp=sharing'
+# url = 'https://drive.google.com/file/d/19P2q3RyermaGJuD88vq1ZxcMjotpq18h/view?usp=sharing'
+url = 'https://drive.google.com/file/d/1iCnHNbOBO6hBOCWOnMP_yDhtSi7OLKdw/view?usp=sharing' # testing
 url='https://drive.google.com/uc?id=' + url.split('/')[-2]
 df = pd.read_csv(url)
 

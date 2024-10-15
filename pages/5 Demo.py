@@ -1,6 +1,6 @@
 # Set up and run this Streamlit App
 import streamlit as st
-from logics.test import generate_answer
+from logics.crew import generate_answer
 from utility import check_password
 from streamlit_chat import message
 

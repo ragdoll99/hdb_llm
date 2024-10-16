@@ -17,24 +17,8 @@ container.write(
 
     Our application is built around two core features:\n
 
-    HDB Resale Intelligent Chatbots – Whether you're curious about past transactions or need guidance on resale procedures, our smart chatbots are here to assist. They can answer a wide range of queries, making your experience smoother and more informed.\n
-    HDB Resale Transaction Explorer – This powerful, user-friendly tool allows you to visualize and filter resale flat data through advanced slicers and dropdowns. From location and price to flat types, finding the perfect option has never been easier.\n
+    1. HDB Resale Intelligent Chatbots - Whether you're curious about past transactions or need guidance on resale procedures, our smart chatbots are here to assist. They can answer a wide range of queries, making your experience smoother and more informed.\n
+    2. HDB Resale Transaction Explorer - This powerful, user-friendly tool allows you to visualize and filter resale flat data through advanced slicers and dropdowns. From location and price to flat types, finding the perfect option has never been easier.\n
     Explore the HDB resale market with confidence, backed by intelligent insights and seamless tools.\n
                 
-    """)
-
-container2 = st.container(border=True)
-container2.write(
-    """
-    Instruction \n
-    A detailed page outlining the project scope, objectives, data sources, and features.
-
-    """)
-
-container3 = st.container(border=True)
-container3.write(
-    """
-    Methodology Page:
-    A comprehensive explanation of the data flows and implementation details.
-    A flowchart illustrating the process flow for each of the use cases in the application. For example, if the application has two main use cases: a) chat with information and b) intelligent search, each of these use cases should have its own flowchart.
     """)

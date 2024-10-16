@@ -11,12 +11,15 @@ container = st.container(border=True)
 
 container.write(
     """
-    How to use this App \n
-    1. Enter your prompt in the text area. \n
-    2. Click the 'Submit' button. \n
-    3. The app will generate a text completion based on your prompt.
-    Instruction \n
-    A detailed page outlining the project scope, objectives, data sources, and features.
+    Welcome to HDB Resale Transactions Intelligent Bots and Data Explorer, your go-to platform for navigating the Singapore HDB resale market with ease and confidence.\n
+
+    Our mission is simple: to provide buyers and sellers with the data-driven tools and insights needed to make well-informed decisions.\n
+
+    Our application is built around two core features:\n
+
+    HDB Resale Intelligent Chatbots – Whether you're curious about past transactions or need guidance on resale procedures, our smart chatbots are here to assist. They can answer a wide range of queries, making your experience smoother and more informed.\n
+    HDB Resale Transaction Explorer – This powerful, user-friendly tool allows you to visualize and filter resale flat data through advanced slicers and dropdowns. From location and price to flat types, finding the perfect option has never been easier.\n
+    Explore the HDB resale market with confidence, backed by intelligent insights and seamless tools.\n
                 
     """)
 

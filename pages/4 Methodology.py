@@ -6,7 +6,7 @@ import pandas as pd
 
 st.title(":blue[Methodology]")
 st.markdown("The **HDB Resale Transactions Intelligent Bots and Data Explorer** application was built with the goal of providing users with fast, accurate, and comprehensive insights into the Singapore HDB resale market.")
-st.markdown("Here is the flow chart of the in-app and one-off operations of the two use case")
+st.markdown("Here is the flow chart of the in-app and one-off operations of the two use case: ")
 
 st.image("image/hdb_llm_flowchat.jpeg", caption="Methodology flow chart")
 

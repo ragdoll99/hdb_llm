@@ -4,8 +4,10 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-st.title(":blue[About this page]")
+st.title(":blue[Methodology]")
 st.markdown("This is a Streamlit App that demonstrates how to use the OpenAI API to generate text completions.")
+
+st.image("image/hdb_llm_flowchat.jpeg", caption="Methodology flow chart")
 
 container = st.container(border=True)
 
@@ -38,4 +40,3 @@ container.write(
 
     """)
 
-st.image("image/hdb_llm_flowchat.jpeg", caption="Sunrise by the mountains")

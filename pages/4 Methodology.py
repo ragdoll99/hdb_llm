@@ -37,3 +37,5 @@ container.write(
     By combining **AI-driven intelligence** with structured data from trusted sources, the application provides users with a seamless, insightful experience in navigating the HDB resale market.
 
     """)
+
+st.image("image/hdb_llm_flowchat.jpeg", caption="Sunrise by the mountains")

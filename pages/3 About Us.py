@@ -4,7 +4,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-st.title(":blue[About the apps")
+st.title(":blue[About the apps]")
 st.markdown("HDB resale Intelligent bot & Resale Transaction Data Explorer")
 
 container = st.container(border=True)

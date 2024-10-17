@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 st.title(":blue[Methodology]")
-st.markdown("This is a Streamlit App that demonstrates how to use the OpenAI API to generate text completions.")
+st.markdown("The **HDB Resale Transactions Intelligent Bots and Data Explorer** application was built with the goal of providing users with fast, accurate, and comprehensive insights into the Singapore HDB resale market.")
 
 st.image("image/hdb_llm_flowchat.jpeg", caption="Methodology flow chart")
 
@@ -14,8 +14,6 @@ container = st.container(border=True)
 container.write(
     """
     ### **Methodology**
-
-    The **HDB Resale Transactions Intelligent Bots and Data Explorer** application was built with the goal of providing users with fast, accurate, and comprehensive insights into the Singapore HDB resale market.
 
     #### **1. Platform & Data Sources**
     The application leverages the **OpenAI platform** to deliver intelligent chatbot interactions and advanced data exploration capabilities. **Data** was sourced from **data.gov.sg**, specifically focusing on HDB resale transactions to ensure accuracy and relevance.

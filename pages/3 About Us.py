@@ -4,8 +4,8 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-st.title(":blue[About this page]")
-st.markdown("This is a Streamlit App that demonstrates how to use the OpenAI API to generate text completions.")
+st.title(":blue[About HDB resale Intelligent bot & Data Explorer]")
+# st.markdown("This is a Streamlit App that demonstrates how to use the OpenAI API to generate text completions.")
 
 container = st.container(border=True)
 

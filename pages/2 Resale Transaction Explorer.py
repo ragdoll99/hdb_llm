@@ -23,7 +23,7 @@ df_hdb_resale = get_data_hdb_resale()
 
 st.title(':blue[HDB Resale transaction explorer]')
 st.markdown("""
-This app performs visualization from the open data from the SG HDB Resale transaction
+This app performs visualization from the open data of SG HDB Resale transaction
 """)
 # st.write(df_hdb_resale)
 
@@ -52,7 +52,8 @@ mask_mbrs = df_hdb_resale['year'].between(nb_mbrs[0], nb_mbrs[1])
 
 
 # testing display
-df_pivot = pd.pivot_table(df_hdb_resale, values='resale_price', index=['town'], columns=['year'], aggfunc='mean')
+df_pivot = pd.pivot_table(df, values=['resale_price', 'Mall_Nearest_Distance','Hawker_Nearest_Distance'], index=['town'], columns=['year'], aggfunc='mean')
+np.round(df_pivot,2)
 st.write(df_pivot)
 
 

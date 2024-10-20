@@ -60,7 +60,8 @@ st.scatter_chart(
     y="resale_price",
     color="flat_type",
 )
-
+# 
+selected_model = st.sidebar.selectbox('Choose a Llama2 model', ['Llama2-7B', 'Llama2-13B'], key='selected_model')
 
 ## not working
 # matplotlib.use("agg")

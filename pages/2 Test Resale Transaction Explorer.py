@@ -24,7 +24,7 @@ selected_measure = st.selectbox('Choose a Measure that you are interested', ['Re
 if selected_measure == 'Resale Price':
     url = 'https://drive.google.com/file/d/1VniabsUyhxnT77aNUQBDcecYXQ-zHQY3/view?usp=share_link'
     column_name = 'mean_resale_price'
-elif selected_measure == 'Distance to Hawker Centre':
+elif selected_measure == 'Distance to Mall':
     url = 'https://drive.google.com/file/d/1RKV3ZzPtPxxNm7EcrTBAgQCT4D3XBqEx/view?usp=share_link'
     column_name = 'mean_Mall_Nearest_Distance'
 df_url='https://drive.google.com/uc?id=' + url.split('/')[-2]

@@ -28,7 +28,11 @@ def get_data_hdb_resale_count():
     return df_hdb_resale
 
 df_hdb_resale = get_data_hdb_resale_count()
-st.write(df_hdb_resale)
+if st.checkbox('Show raw data'):
+    st.subheader('Raw data')
+    st.write(df_hdb_resale)
+
+st.bar_chart(df_hdb_resale, x = "year", y="Number_of_Transaction")
 
 # Session 2
 st.subheader('Session 2: Measure of Interest')

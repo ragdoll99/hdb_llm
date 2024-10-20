@@ -25,6 +25,7 @@ def get_data_hdb_resale_count():
     return df_hdb_resale
 
 df_hdb_resale = get_data_hdb_resale_count()
+st.write(df_hdb_resale)
 
 # create a drop down list
 selected_measure = st.selectbox('Choose a Measure that you are interested', ['Resale Price', 'Distance to Hawker Centre', 'Distance to Mall'], key='selected_measure')

@@ -15,6 +15,8 @@ st.title(':blue[HDB Resale transaction explorer]')
 st.markdown("""
 This app performs visualization from the open data of SG HDB Resale transaction
 """)
+# create selection
+st.sidebar.header('Select what to display')
 
 # Session 1 number of Resale transaction 
 st.subheader('Session 1: Number of HDB resale transaction by year')
@@ -39,11 +41,21 @@ if st.checkbox('Show raw data'):
 df_hdb_resale = get_data_hdb_resale_count()
 st.bar_chart(df_hdb_resale, x = "year", y="Number_of_Transaction")
 
+## Create sidebar filter 1
+# flat_type = df_hdb_resale['flat_type'].unique().tolist()
+# hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
+
+## Create sidebar filter 2
+resale_year = df_hdb_resale['year']
+resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
+
+
 # Session 2
 st.subheader('Session 2: Measure of Interest')
 # create a drop down list
 selected_measure = st.selectbox('Choose a Measure that you are interested', ['Resale Price', 'Distance to Hawker Centre', 'Distance to Mall'], key='selected_measure')
 
+# Create variable
 if selected_measure == 'Resale Price':
     pivot_url = 'https://drive.google.com/file/d/1VniabsUyhxnT77aNUQBDcecYXQ-zHQY3/view?usp=share_link'
     column_name = 'mean_resale_price'
@@ -69,16 +81,25 @@ df_hdb_selected_measure = get_data_hdb_measure()
 
 ## Create Masks
 mask_town = df_hdb_selected_measure['town'].isin(hdb_town_selected)
+# creates masks for years slicer
+mask_mbrs = df_hdb_resale['year'].between(resale_year_selected[0], resale_year_selected[1])
+
 ## apply mask to the data
 df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town]
 
+# create pivot table based on selected measure
 df_pivot = pd.pivot_table(df_hdb_selected_measure_filtered, values=column_name, index=['town'], columns=['year'], aggfunc='mean')
 df_pivot = np.round(df_pivot,2)
 if st.checkbox(f'Show {selected_measure} data'):
     st.subheader('Raw data')
     st.write(df_pivot)
 
+# create bar chart
 st.bar_chart(df_hdb_selected_measure_filtered, x = "year", y=column_name, color="town", stack=False)
+
+
+
+
 # # create multi-select for town
 # hdb_town = df_hdb_resale['town'].unique().tolist()
 # hdb_town_selected = st.multiselect('Select Town that you would like to exclude: ', hdb_town, hdb_town)

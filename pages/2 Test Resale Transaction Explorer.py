@@ -35,7 +35,7 @@ selected_measure = st.selectbox('Choose a Measure that you are interested', ['Re
 st.write(df_hdb_resale)
 
 df_pivot = pd.pivot_table(df_hdb_resale, values='mean_resale_price', index=['town'], columns=['year'], aggfunc='mean')
-df_pivot
+# df_pivot
 st.write(df_pivot)
 
 

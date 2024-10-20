@@ -56,17 +56,13 @@ mask_mbrs = df_hdb_resale['year'].between(nb_mbrs[0], nb_mbrs[1])
 
 # testing display
 if selected_measure == 'Resale Price':
-    df_pivot = pd.pivot_table(df, values='resale_price', index=['town'], columns=['year'], aggfunc='mean')
-    df_pivot = np.round(df_pivot,2)
-    st.write(df_pivot)
+    df_pivot = pd.pivot_table(df_hdb_resale, values='resale_price', index=['town'], columns=['year'], aggfunc='mean')
 elif selected_measure == 'Distance to Hawker Centre':
-    df_pivot = pd.pivot_table(df, values='Hawker_Nearest_Distance', index=['town'], columns=['year'], aggfunc='mean')
-    df_pivot = np.round(df_pivot,2)
-    st.write(df_pivot)
+    df_pivot = pd.pivot_table(df_hdb_resale, values='Hawker_Nearest_Distance', index=['town'], columns=['year'], aggfunc='mean')
 elif selected_measure == 'Distance to Mall':
-    df_pivot = pd.pivot_table(df, values='Mall_Nearest_Distance', index=['town'], columns=['year'], aggfunc='mean')
-    df_pivot = np.round(df_pivot,2)
-    st.write(df_pivot)
+    df_pivot = pd.pivot_table(df_hdb_resale, values='Mall_Nearest_Distance', index=['town'], columns=['year'], aggfunc='mean')
+df_pivot = np.round(df_pivot,2)
+st.write(df_pivot)
 
 # test
 

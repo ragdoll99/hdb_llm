@@ -44,7 +44,6 @@ st.subheader('Session 2: Measure of Interest')
 # create a drop down list
 selected_measure = st.selectbox('Choose a Measure that you are interested', ['Resale Price', 'Distance to Hawker Centre', 'Distance to Mall'], key='selected_measure')
 
-
 if selected_measure == 'Resale Price':
     pivot_url = 'https://drive.google.com/file/d/1VniabsUyhxnT77aNUQBDcecYXQ-zHQY3/view?usp=share_link'
     column_name = 'mean_resale_price'
@@ -56,23 +55,25 @@ elif selected_measure == 'Distance to Hawker Centre':
     column_name = 'mean_Hawker_Nearest_Distance'
 df_url='https://drive.google.com/uc?id=' + pivot_url.split('/')[-2]
 
+# create multi-select for town
+hdb_town = df_hdb_resale['town'].unique().tolist()
+hdb_town_selected = st.multiselect('Select Town that you would like to include: ', hdb_town, hdb_town)
 
-
-#Loading the data
-# @st.cache_data
-def get_data_hdb_resale():
-    df_hdb_resale = pd.read_csv(df_url)
-    return df_hdb_resale
+#Loading the data with measure variable
+def get_data_hdb_measure():
+    df_hdb_selected_measure = pd.read_csv(df_url)
+    return df_hdb_selected_measure
 
 #load dataframes
-df_hdb_resale = get_data_hdb_resale()
+df_hdb_selected_measure = get_data_hdb_measure()
 
-df_pivot = pd.pivot_table(df_hdb_resale, values=column_name, index=['town'], columns=['year'], aggfunc='mean')
+df_pivot = pd.pivot_table(df_hdb_selected_measure, values=column_name, index=['town'], columns=['year'], aggfunc='mean')
 df_pivot = np.round(df_pivot,2)
-st.write(df_pivot)
+if st.checkbox('Show raw data'):
+    st.subheader('Raw data')
+    st.write(df_pivot)
 
-
-st.bar_chart(df_hdb_resale, x = "year", y=column_name, color="town", stack=False)
+st.bar_chart(df_hdb_selected_measure, x = "year", y=column_name, color="town", stack=False)
 # # create multi-select for town
 # hdb_town = df_hdb_resale['town'].unique().tolist()
 # hdb_town_selected = st.multiselect('Select Town that you would like to exclude: ', hdb_town, hdb_town)

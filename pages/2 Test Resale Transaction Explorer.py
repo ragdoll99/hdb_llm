@@ -17,7 +17,7 @@ This app performs visualization from the open data of SG HDB Resale transaction
 """)
 
 # Session 1 number of Resale transaction 
-st.title('Number of HDB resale transaction by year')
+st.subheader('Number of HDB resale transaction by year')
 #Loading the data
 @st.cache_data
 def get_data_hdb_resale_count():
@@ -29,7 +29,8 @@ def get_data_hdb_resale_count():
 df_hdb_resale = get_data_hdb_resale_count()
 st.write(df_hdb_resale)
 
-st.title('Measure of Interest')
+# Session 2
+st.subheader('Measure of Interest')
 # create a drop down list
 selected_measure = st.selectbox('Choose a Measure that you are interested', ['Resale Price', 'Distance to Hawker Centre', 'Distance to Mall'], key='selected_measure')
 

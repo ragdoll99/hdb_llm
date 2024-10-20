@@ -8,14 +8,6 @@ import os
 import numpy as np
 # import plotly.express as px
 
-#Loading the data
-@st.cache_data
-def get_data_hdb_resale():
-    # url = 'https://drive.google.com/file/d/19P2q3RyermaGJuD88vq1ZxcMjotpq18h/view?usp=sharing'
-    url = 'https://drive.google.com/file/d/1VniabsUyhxnT77aNUQBDcecYXQ-zHQY3/view?usp=share_link'
-    url='https://drive.google.com/uc?id=' + url.split('/')[-2]
-    df_hdb_resale = pd.read_csv(url)
-    return df_hdb_resale
 
 #configuration of the page
 st.set_page_config(layout="wide")
@@ -32,10 +24,26 @@ This app performs visualization from the open data of SG HDB Resale transaction
 selected_measure = st.selectbox('Choose a Measure that you are interested', ['Resale Price', 'Distance to Hawker Centre', 'Distance to Mall'], key='selected_measure')
 
 
+if selected_measure == 'Resale Price':
+    url = 'https://drive.google.com/file/d/1VniabsUyhxnT77aNUQBDcecYXQ-zHQY3/view?usp=share_link'
+    column_name = 'mean_resale_price'
+elif selected_measure == 'Distance to Hawker Centre':
+    url = 'https://drive.google.com/file/d/1RKV3ZzPtPxxNm7EcrTBAgQCT4D3XBqEx/view?usp=share_link'
+    column_name = 'mean_Mall_Nearest_Distance'
+
+
+#Loading the data
+@st.cache_data
+def get_data_hdb_resale():
+    # url = 'https://drive.google.com/file/d/19P2q3RyermaGJuD88vq1ZxcMjotpq18h/view?usp=sharing'
+    # url = 'https://drive.google.com/file/d/1VniabsUyhxnT77aNUQBDcecYXQ-zHQY3/view?usp=share_link'
+    url='https://drive.google.com/uc?id=' + url.split('/')[-2]
+    df_hdb_resale = pd.read_csv(url)
+    return df_hdb_resale
+
 st.write(df_hdb_resale)
 
-df_pivot = pd.pivot_table(df_hdb_resale, values='mean_resale_price', index=['town'], columns=['year'], aggfunc='mean')
-# df_pivot
+df_pivot = pd.pivot_table(df_hdb_resale, values=column_name, index=['town'], columns=['year'], aggfunc='mean')
 st.write(df_pivot)
 
 

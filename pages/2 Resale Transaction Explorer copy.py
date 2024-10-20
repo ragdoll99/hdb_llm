@@ -12,6 +12,7 @@ import numpy as np
 @st.cache_data
 def get_data_hdb_resale():
     url = 'https://drive.google.com/file/d/19P2q3RyermaGJuD88vq1ZxcMjotpq18h/view?usp=sharing'
+    # url = 'https://drive.google.com/file/d/1VniabsUyhxnT77aNUQBDcecYXQ-zHQY3/view?usp=share_link'
     url='https://drive.google.com/uc?id=' + url.split('/')[-2]
     df_hdb_resale = pd.read_csv(url)
     return df_hdb_resale

@@ -27,6 +27,7 @@ if selected_measure == 'Resale Price':
 elif selected_measure == 'Distance to Hawker Centre':
     url = 'https://drive.google.com/file/d/1RKV3ZzPtPxxNm7EcrTBAgQCT4D3XBqEx/view?usp=share_link'
     column_name = 'mean_Mall_Nearest_Distance'
+df_url='https://drive.google.com/uc?id=' + url.split('/')[-2]
 
 
 #Loading the data
@@ -34,8 +35,8 @@ elif selected_measure == 'Distance to Hawker Centre':
 def get_data_hdb_resale():
     # url = 'https://drive.google.com/file/d/19P2q3RyermaGJuD88vq1ZxcMjotpq18h/view?usp=sharing'
     # url = 'https://drive.google.com/file/d/1VniabsUyhxnT77aNUQBDcecYXQ-zHQY3/view?usp=share_link'
-    url='https://drive.google.com/uc?id=' + url.split('/')[-2]
-    df_hdb_resale = pd.read_csv(url)
+    # url='https://drive.google.com/uc?id=' + url.split('/')[-2]
+    df_hdb_resale = pd.read_csv(df_url)
     return df_hdb_resale
 
 #load dataframes

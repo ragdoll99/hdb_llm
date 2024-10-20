@@ -27,22 +27,28 @@ This app performs visualization from the open data from the SG HDB Resale transa
 """)
 st.write(df_hdb_resale)
 
+# create multi-select for town
+hdb_town = df_hdb_resale['town'].unique().tolist()
+hdb_town_selected = st.multiselect('Town', hdb_town, hdb_town)
+
 # create selection
 st.sidebar.header('Select what to display')
-pol_parties = df_hdb_resale['town'].unique().tolist()
-pol_party_selected = st.sidebar.multiselect('Town', pol_parties, pol_parties)
+
+# create a drop down list
+flat_type = df_hdb_resale['flat_type'].unique().tolist()
+hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
+
 nb_deputies = df_hdb_resale['year']
 nb_mbrs = st.sidebar.slider("Number of members", int(nb_deputies.min()), int(nb_deputies.max()), (int(nb_deputies.min()), int(nb_deputies.max())), 1)
 
 # creates masks from the sidebar selection widgets
-mask_pol_par = df_hdb_resale['town'].isin(pol_party_selected)
+mask_pol_par = df_hdb_resale['town'].isin(hdb_town_selected)
 
 # creates masks for years slicer
 mask_mbrs = df_hdb_resale['year'].between(nb_mbrs[0], nb_mbrs[1])
 
-# create a drop down list
-flat_type = df_hdb_resale['flat_type'].unique().tolist()
-st.selectbox('Select Flat Type', flat_type, key='selected_type')
+
+
 
 # apply mask to the data
 df_hdb_resale_filtered = df_hdb_resale[mask_pol_par & mask_mbrs]

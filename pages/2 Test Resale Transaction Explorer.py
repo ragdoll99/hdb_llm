@@ -48,6 +48,7 @@ df_pivot = pd.pivot_table(df_hdb_resale, values=column_name, index=['town'], col
 st.write(df_pivot)
 
 
+st.bar_chart(df_hdb_resale, x = "year", y=column_name, color="town", stack=False)
 # # create multi-select for town
 # hdb_town = df_hdb_resale['town'].unique().tolist()
 # hdb_town_selected = st.multiselect('Select Town that you would like to exclude: ', hdb_town, hdb_town)

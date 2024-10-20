@@ -17,20 +17,21 @@ This app performs visualization from the open data of SG HDB Resale transaction
 """)
 
 # Session 1 number of Resale transaction 
-st.subheader('Number of HDB resale transaction by year')
+st.subheader('Session 1: Number of HDB resale transaction by year')
 #Loading the data
 @st.cache_data
 def get_data_hdb_resale_count():
-    url = 'https://drive.google.com/file/d/1iCnHNbOBO6hBOCWOnMP_yDhtSi7OLKdw/view?usp=share_link'
+    url = 'https://drive.google.com/file/d/1osPgUJJFP3SJe4F4QI2XvdNLGYVnhwX7/view?usp=share_link'
     url='https://drive.google.com/uc?id=' + url.split('/')[-2]
-    df_hdb_resale = pd.read_csv(url)
+    df = pd.read_csv(url)
+    df_hdb_resale = pd.pivot_table(df, values='Number_of_Transaction', index=['town'], columns=['year'], aggfunc='mean')
     return df_hdb_resale
 
 df_hdb_resale = get_data_hdb_resale_count()
 st.write(df_hdb_resale)
 
 # Session 2
-st.subheader('Measure of Interest')
+st.subheader('Session 2: Measure of Interest')
 # create a drop down list
 selected_measure = st.selectbox('Choose a Measure that you are interested', ['Resale Price', 'Distance to Hawker Centre', 'Distance to Mall'], key='selected_measure')
 
@@ -41,22 +42,21 @@ if selected_measure == 'Resale Price':
 elif selected_measure == 'Distance to Mall':
     pivot_url = 'https://drive.google.com/file/d/1RKV3ZzPtPxxNm7EcrTBAgQCT4D3XBqEx/view?usp=share_link'
     column_name = 'mean_Mall_Nearest_Distance'
+else selected_measure == 'Distance to Hawker Centre':
+    pivot_url = 'https://drive.google.com/file/d/12C_xfDkRSYitGQgcMkig8fvOfsw1w-cy/view?usp=share_link'
+    column_name = 'mean_Hawker_Nearest_Distance'
 df_url='https://drive.google.com/uc?id=' + pivot_url.split('/')[-2]
+
 
 
 #Loading the data
 # @st.cache_data
 def get_data_hdb_resale():
-    # url = 'https://drive.google.com/file/d/19P2q3RyermaGJuD88vq1ZxcMjotpq18h/view?usp=sharing'
-    # url = 'https://drive.google.com/file/d/1VniabsUyhxnT77aNUQBDcecYXQ-zHQY3/view?usp=share_link'
-    # url='https://drive.google.com/uc?id=' + url.split('/')[-2]
     df_hdb_resale = pd.read_csv(df_url)
     return df_hdb_resale
 
 #load dataframes
 df_hdb_resale = get_data_hdb_resale()
-
-# st.write(df_hdb_resale)
 
 df_pivot = pd.pivot_table(df_hdb_resale, values=column_name, index=['town'], columns=['year'], aggfunc='mean')
 df_pivot = np.round(df_pivot,2)

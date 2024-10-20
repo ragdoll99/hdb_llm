@@ -55,9 +55,9 @@ mask_mbrs = df_hdb_resale['year'].between(nb_mbrs[0], nb_mbrs[1])
 
 
 # testing display
-df_pivot = pd.pivot_table(df, values=['resale_price', 'Mall_Nearest_Distance','Hawker_Nearest_Distance'], index=['town'], columns=['year'], aggfunc='mean')
-df_pivot = np.round(df_pivot,2)
-st.write(df_pivot)
+# df_pivot = pd.pivot_table(df, values=['resale_price', 'Mall_Nearest_Distance','Hawker_Nearest_Distance'], index=['town'], columns=['year'], aggfunc='mean')
+# df_pivot = np.round(df_pivot,2)
+# st.write(df_pivot)
 
 
 

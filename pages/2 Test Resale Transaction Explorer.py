@@ -69,7 +69,7 @@ df_hdb_selected_measure = get_data_hdb_measure()
 
 df_pivot = pd.pivot_table(df_hdb_selected_measure, values=column_name, index=['town'], columns=['year'], aggfunc='mean')
 df_pivot = np.round(df_pivot,2)
-if st.checkbox('Show measure data'):
+if st.checkbox(f'Show {selected_measure} data'):
     st.subheader('Raw data')
     st.write(df_pivot)
 

@@ -42,7 +42,7 @@ if selected_measure == 'Resale Price':
 elif selected_measure == 'Distance to Mall':
     pivot_url = 'https://drive.google.com/file/d/1RKV3ZzPtPxxNm7EcrTBAgQCT4D3XBqEx/view?usp=share_link'
     column_name = 'mean_Mall_Nearest_Distance'
-else selected_measure == 'Distance to Hawker Centre':
+elif selected_measure == 'Distance to Hawker Centre':
     pivot_url = 'https://drive.google.com/file/d/12C_xfDkRSYitGQgcMkig8fvOfsw1w-cy/view?usp=share_link'
     column_name = 'mean_Hawker_Nearest_Distance'
 df_url='https://drive.google.com/uc?id=' + pivot_url.split('/')[-2]

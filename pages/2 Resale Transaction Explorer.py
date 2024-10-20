@@ -25,11 +25,11 @@ st.title(':blue[HDB Resale transaction explorer]')
 st.markdown("""
 This app performs visualization from the open data from the SG HDB Resale transaction
 """)
-st.write(df_hdb_resale)
+# st.write(df_hdb_resale)
 
 # create multi-select for town
 hdb_town = df_hdb_resale['town'].unique().tolist()
-hdb_town_selected = st.multiselect('Town', hdb_town, hdb_town)
+hdb_town_selected = st.multiselect('Select Town that you would like to exclude: ', hdb_town, hdb_town)
 
 # create selection
 st.sidebar.header('Select what to display')
@@ -39,8 +39,10 @@ flat_type = df_hdb_resale['flat_type'].unique().tolist()
 hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
 
 nb_deputies = df_hdb_resale['year']
-nb_mbrs = st.sidebar.slider("Number of members", int(nb_deputies.min()), int(nb_deputies.max()), (int(nb_deputies.min()), int(nb_deputies.max())), 1)
+nb_mbrs = st.sidebar.slider("Select Year", int(nb_deputies.min()), int(nb_deputies.max()), (int(nb_deputies.min()), int(nb_deputies.max())), 1)
 
+
+## Create Masks
 # creates masks from the sidebar selection widgets
 mask_pol_par = df_hdb_resale['town'].isin(hdb_town_selected)
 
@@ -49,8 +51,13 @@ mask_mbrs = df_hdb_resale['year'].between(nb_mbrs[0], nb_mbrs[1])
 
 
 
+# testing display
+df_pivot = pd.pivot_table(df_hdb_resale, values='resale_price', index=['town'], columns=['year'], aggfunc='mean')
+st.write(df_pivot)
 
-# apply mask to the data
+
+
+## apply mask to the data
 df_hdb_resale_filtered = df_hdb_resale[mask_pol_par & mask_mbrs]
 st.write(df_hdb_resale_filtered)
 

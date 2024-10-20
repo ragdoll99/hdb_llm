@@ -11,9 +11,6 @@ import numpy as np
 
 #configuration of the page
 st.set_page_config(layout="wide")
-#load dataframes
-df_hdb_resale = get_data_hdb_resale()
-
 st.title(':blue[HDB Resale transaction explorer]')
 st.markdown("""
 This app performs visualization from the open data of SG HDB Resale transaction
@@ -40,6 +37,9 @@ def get_data_hdb_resale():
     url='https://drive.google.com/uc?id=' + url.split('/')[-2]
     df_hdb_resale = pd.read_csv(url)
     return df_hdb_resale
+
+#load dataframes
+df_hdb_resale = get_data_hdb_resale()
 
 st.write(df_hdb_resale)
 

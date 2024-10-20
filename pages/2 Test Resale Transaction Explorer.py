@@ -67,13 +67,18 @@ def get_data_hdb_measure():
 #load dataframes
 df_hdb_selected_measure = get_data_hdb_measure()
 
-df_pivot = pd.pivot_table(df_hdb_selected_measure, values=column_name, index=['town'], columns=['year'], aggfunc='mean')
+## Create Masks
+mask_town = df_hdb_selected_measure['town'].isin(hdb_town_selected)
+## apply mask to the data
+df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town]
+
+df_pivot = pd.pivot_table(df_hdb_selected_measure_filtered, values=column_name, index=['town'], columns=['year'], aggfunc='mean')
 df_pivot = np.round(df_pivot,2)
 if st.checkbox(f'Show {selected_measure} data'):
     st.subheader('Raw data')
     st.write(df_pivot)
 
-st.bar_chart(df_hdb_selected_measure, x = "year", y=column_name, color="town", stack=False)
+st.bar_chart(df_hdb_selected_measure_filtered, x = "year", y=column_name, color="town", stack=False)
 # # create multi-select for town
 # hdb_town = df_hdb_resale['town'].unique().tolist()
 # hdb_town_selected = st.multiselect('Select Town that you would like to exclude: ', hdb_town, hdb_town)

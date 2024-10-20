@@ -24,14 +24,19 @@ def get_data_hdb_resale_count():
     url = 'https://drive.google.com/file/d/1osPgUJJFP3SJe4F4QI2XvdNLGYVnhwX7/view?usp=share_link'
     url='https://drive.google.com/uc?id=' + url.split('/')[-2]
     df = pd.read_csv(url)
-    df_hdb_resale = pd.pivot_table(df, values='Number_of_Transaction', index=['town'], columns=['year'], aggfunc='mean')
-    return df_hdb_resale
+    return df
 
-df_hdb_resale = get_data_hdb_resale_count()
+def get_data_hdb_resale_count_pivot():
+    df = get_data_hdb_resale_count()
+    df_hdb_resale_pivot = pd.pivot_table(df, values='Number_of_Transaction', index=['town'], columns=['year'], aggfunc='mean')
+    return df_hdb_resale_pivot
+
+df_hdb_resale = get_data_hdb_resale_count_pivot()
 if st.checkbox('Show raw data'):
     st.subheader('Raw data')
     st.write(df_hdb_resale)
 
+df_hdb_resale = get_data_hdb_resale_count()
 st.bar_chart(df_hdb_resale, x = "year", y="Number_of_Transaction")
 
 # Session 2

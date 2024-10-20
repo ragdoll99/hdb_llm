@@ -40,9 +40,16 @@ mask_pol_par = df_hdb_resale['town'].isin(pol_party_selected)
 # creates masks for years slicer
 mask_mbrs = df_hdb_resale['year'].between(nb_mbrs[0], nb_mbrs[1])
 
+# create a drop down list
+flat_type = df_hdb_resale['flat_type'].unique().tolist()
+st.selectbox('Select Flat Type', flat_type, key='selected_type')
+
 # apply mask to the data
 df_hdb_resale_filtered = df_hdb_resale[mask_pol_par & mask_mbrs]
 st.write(df_hdb_resale_filtered)
+
+
+
 
 # Create a Bar chart
 df_count = (
@@ -61,7 +68,7 @@ st.scatter_chart(
     color="flat_type",
 )
 # 
-st.selectbox('Choose a Llama2 model', ['Llama2-7B', 'Llama2-13B'], key='selected_model')
+
 
 ## not working
 # matplotlib.use("agg")

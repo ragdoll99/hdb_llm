@@ -27,6 +27,9 @@ This app performs visualization from the open data of SG HDB Resale transaction
 """)
 # st.write(df_hdb_resale)
 
+# create a drop down list
+selected_measure = st.selectbox('Choose a Measure that you are interested', ['Resale Price', 'Distance to Hawker Centre', 'Distance to Mall'], key='selected_measure')
+
 # create multi-select for town
 hdb_town = df_hdb_resale['town'].unique().tolist()
 hdb_town_selected = st.multiselect('Select Town that you would like to exclude: ', hdb_town, hdb_town)

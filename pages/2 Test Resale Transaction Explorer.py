@@ -53,8 +53,7 @@ resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), i
 ## Create sidebar filter 3
 region = df_hdb_resale['Region'].unique().tolist()
 hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selected_region')
-st.write(region)
-
+st.write(hdb_region_selected)
 
 # Session 2
 st.subheader('Session 2: Measure of Interest')

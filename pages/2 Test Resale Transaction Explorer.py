@@ -47,8 +47,10 @@ st.bar_chart(df_hdb_resale, x = "year", y="Number_of_Transaction")
 
 ## Create sidebar filter 2
 resale_year = df_hdb_resale['year'].unique().tolist()
-st.write(resale_year)
-resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
+# min(resale_year)
+# max(resale_year)
+resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
+# resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
 
 
 # Session 2

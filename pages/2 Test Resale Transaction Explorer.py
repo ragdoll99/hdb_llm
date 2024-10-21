@@ -88,7 +88,7 @@ mask_town = df_hdb_selected_measure['town'].isin(hdb_town_selected)
 mask_years = df_hdb_resale['year'].between(resale_year_selected[0], resale_year_selected[1])
 
 ## apply mask to the data
-df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town & mask_years]
+df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town]
 
 st.write(df_hdb_selected_measure_filtered)
 # create pivot table based on selected measure

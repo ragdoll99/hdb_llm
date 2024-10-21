@@ -42,13 +42,17 @@ df_hdb_resale = get_data_hdb_resale_count()
 st.bar_chart(df_hdb_resale, x = "year", y="Number_of_Transaction")
 
 ## Create sidebar filter 1
-# flat_type = df_hdb_resale['flat_type'].unique().tolist()
-# hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
+flat_type = df_hdb_resale['flat_type'].unique().tolist()
+hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
 
 ## Create sidebar filter 2
 resale_year = df_hdb_resale['year'].unique().tolist()
 resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
 # resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
+
+## Create sidebar filter 3
+region = df_hdb_resale['Region'].unique().tolist()
+hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selected_region')
 
 
 # Session 2

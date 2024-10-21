@@ -85,11 +85,14 @@ df_hdb_selected_measure = get_data_hdb_measure()
 ## Create Masks
 mask_town = df_hdb_selected_measure['town'].isin(hdb_town_selected)
 # creates masks for years slicer
-mask_years = df_hdb_resale['year'].between(2015, 2020)
-# mask_years = df_hdb_resale['year'].between(resale_year_selected[0], resale_year_selected[1])
+mask_years = df_hdb_resale['year'].between(resale_year_selected[0], resale_year_selected[1])
 
 ## apply mask to the data
-df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town & mask_years]
+df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town]
+dddddddd = df_hdb_selected_measure[mask_years]
+
+st.write(df_hdb_selected_measure_filtered)
+st.write(dddddddd)
 
 st.write(resale_year_selected[0])
 st.write(resale_year_selected[1])

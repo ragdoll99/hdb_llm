@@ -53,6 +53,7 @@ resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), i
 ## Create sidebar filter 3
 region = df_hdb_resale['Region'].unique().tolist()
 hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selected_region')
+st.write(region)
 
 
 # Session 2
@@ -91,7 +92,6 @@ mask_years = df_hdb_selected_measure['year'].between(resale_year_selected[0], re
 # creates masks for region
 mask_region = df_hdb_selected_measure['Region'].isin(hdb_region_selected)
 
-st.write(df_hdb_selected_measure)
 
 ## apply mask to the data
 df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town & mask_years & mask_region]

@@ -46,7 +46,7 @@ st.bar_chart(df_hdb_resale, x = "year", y="Number_of_Transaction")
 # hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
 
 ## Create sidebar filter 2
-resale_year = df_hdb_resale['year']
+resale_year = df_hdb_resale['year'].unique().tolist()
 st.write(resale_year)
 resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
 

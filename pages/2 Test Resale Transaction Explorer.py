@@ -42,8 +42,8 @@ df_hdb_resale = get_data_hdb_resale_count()
 st.bar_chart(df_hdb_resale, x = "year", y="Number_of_Transaction")
 
 ## Create sidebar filter 1
-flat_type = df_hdb_resale['flat_type'].unique().tolist()
-hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
+# flat_type = df_hdb_resale['flat_type'].unique().tolist()
+# hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
 
 ## Create sidebar filter 2
 resale_year = df_hdb_resale['year'].unique().tolist()
@@ -53,7 +53,6 @@ resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), i
 ## Create sidebar filter 3
 region = df_hdb_resale['Region'].unique().tolist()
 hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selected_region')
-st.write(hdb_region_selected)
 
 # Session 2
 st.subheader('Session 2: Measure of Interest')
@@ -89,8 +88,7 @@ mask_town = df_hdb_selected_measure['town'].isin(hdb_town_selected)
 # creates masks for years slicer
 mask_years = df_hdb_selected_measure['year'].between(resale_year_selected[0], resale_year_selected[1])
 # creates masks for region
-mask_region = df_hdb_selected_measure['Region'].isin(hdb_region_selected)
-
+mask_region = df_hdb_selected_measure['Region'] == hdb_region_selected
 
 ## apply mask to the data
 df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town & mask_years & mask_region]

@@ -21,7 +21,7 @@ st.sidebar.header('Select what to display')
 # Session 1 number of Resale transaction 
 st.subheader('Session 1: Number of HDB resale transaction by year')
 #Loading the data
-@st.cache_data
+# @st.cache_data
 def get_data_hdb_resale_count():
     url = 'https://drive.google.com/file/d/1osPgUJJFP3SJe4F4QI2XvdNLGYVnhwX7/view?usp=share_link'
     url='https://drive.google.com/uc?id=' + url.split('/')[-2]

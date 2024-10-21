@@ -89,7 +89,7 @@ mask_town = df_hdb_selected_measure['town'].isin(hdb_town_selected)
 # creates masks for years slicer
 mask_years = df_hdb_selected_measure['year'].between(resale_year_selected[0], resale_year_selected[1])
 # creates masks for region
-mask_region = df_hdb_selected_measure['Region'].isin(hdb_town_selected)
+mask_region = df_hdb_selected_measure['Region'].isin(hdb_region_selected)
 
 st.write(df_hdb_selected_measure)
 

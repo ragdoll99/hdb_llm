@@ -47,8 +47,6 @@ st.bar_chart(df_hdb_resale, x = "year", y="Number_of_Transaction")
 
 ## Create sidebar filter 2
 resale_year = df_hdb_resale['year'].unique().tolist()
-# min(resale_year)
-# max(resale_year)
 resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
 # resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
 
@@ -85,17 +83,11 @@ df_hdb_selected_measure = get_data_hdb_measure()
 ## Create Masks
 mask_town = df_hdb_selected_measure['town'].isin(hdb_town_selected)
 # creates masks for years slicer
-mask_years = df_hdb_resale['year'].between(resale_year_selected[0], resale_year_selected[1])
+mask_years = df_hdb_selected_measure['year'].between(resale_year_selected[0], resale_year_selected[1])
 
 ## apply mask to the data
-df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town]
-dddddddd = df_hdb_selected_measure[mask_years]
+df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town & mask_years]
 
-st.write(df_hdb_selected_measure_filtered)
-st.write(dddddddd)
-
-st.write(resale_year_selected[0])
-st.write(resale_year_selected[1])
 # create pivot table based on selected measure
 df_pivot = pd.pivot_table(df_hdb_selected_measure_filtered, values=column_name, index=['town'], columns=['year'], aggfunc='mean')
 df_pivot = np.round(df_pivot,2)

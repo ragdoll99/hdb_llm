@@ -85,14 +85,14 @@ df_hdb_selected_measure = get_data_hdb_measure()
 ## Create Masks
 mask_town = df_hdb_selected_measure['town'].isin(hdb_town_selected)
 # creates masks for years slicer
-mask_years = df_hdb_resale['year'].between(resale_year_selected[0], resale_year_selected[1])
+mask_years = df_hdb_resale['year'].between(2015, 2020)
+# mask_years = df_hdb_resale['year'].between(resale_year_selected[0], resale_year_selected[1])
 
 ## apply mask to the data
 df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town & mask_years]
 
 st.write(resale_year_selected[0])
 st.write(resale_year_selected[1])
-st.write(df_hdb_selected_measure_filtered)
 # create pivot table based on selected measure
 df_pivot = pd.pivot_table(df_hdb_selected_measure_filtered, values=column_name, index=['town'], columns=['year'], aggfunc='mean')
 df_pivot = np.round(df_pivot,2)

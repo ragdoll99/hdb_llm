@@ -51,7 +51,7 @@ resale_year = df_hdb_resale['year'].unique().tolist()
 # max(resale_year)
 resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
 # resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
-st.write(resale_year_selected)
+
 
 # Session 2
 st.subheader('Session 2: Measure of Interest')
@@ -87,7 +87,6 @@ mask_town = df_hdb_selected_measure['town'].isin(hdb_town_selected)
 # creates masks for years slicer
 mask_years = df_hdb_resale['year'].between(resale_year_selected[0], resale_year_selected[1])
 
-st.write(mask_years)
 ## apply mask to the data
 df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town & mask_years]
 

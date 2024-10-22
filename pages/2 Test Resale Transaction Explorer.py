@@ -18,7 +18,6 @@ This app performs visualization from the open data of SG HDB Resale transaction
 
 # create sidebar
 st.sidebar.header('Select what to display')
-st.write("hello")
 
 # Session 1 number of Resale transaction 
 st.subheader('Session 1: Number of HDB resale transaction by year')

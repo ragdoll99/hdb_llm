@@ -15,8 +15,10 @@ st.title(':blue[HDB Resale transaction explorer]')
 st.markdown("""
 This app performs visualization from the open data of SG HDB Resale transaction
 """)
-# create selection
+
+# create sidebar
 st.sidebar.header('Select what to display')
+st.write("hello")
 
 # Session 1 number of Resale transaction 
 st.subheader('Session 1: Number of HDB resale transaction by year')
@@ -45,14 +47,17 @@ st.bar_chart(df_hdb_resale, x = "year", y="Number_of_Transaction")
 # flat_type = df_hdb_resale['flat_type'].unique().tolist()
 # hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
 
+
 ## Create sidebar filter 2
+region = df_hdb_resale['Region'].unique().tolist()
+hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selected_region')
+
+
+## Create sidebar filter 3
 resale_year = df_hdb_resale['year'].unique().tolist()
 resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
 # resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
 
-## Create sidebar filter 3
-region = df_hdb_resale['Region'].unique().tolist()
-hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selected_region')
 
 # Session 2
 st.subheader('Session 2: Measure of Interest')

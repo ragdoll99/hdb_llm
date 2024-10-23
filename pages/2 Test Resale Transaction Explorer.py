@@ -19,9 +19,7 @@ This app performs visualization from the open data of SG HDB Resale transaction
 # create sidebar
 st.sidebar.header('Select what to display')
 
-# Session 1 number of Resale transaction 
-st.subheader('Session 1: Number of HDB resale transaction by year')
-#Loading the data
+#Loading initial data
 # @st.cache_data
 def get_data_hdb_resale_count():
     url = 'https://drive.google.com/file/d/1osPgUJJFP3SJe4F4QI2XvdNLGYVnhwX7/view?usp=share_link'
@@ -29,41 +27,74 @@ def get_data_hdb_resale_count():
     df = pd.read_csv(url)
     return df
 
-def get_data_hdb_resale_count_pivot():
-    df = get_data_hdb_resale_count()
-    df_hdb_resale_pivot = pd.pivot_table(df, values='Number_of_Transaction', index=['town'], columns=['year'], aggfunc='mean')
-    return df_hdb_resale_pivot
-
-df_hdb_resale = get_data_hdb_resale_count_pivot()
-if st.checkbox('Show raw data'):
-    st.subheader('Raw data')
-    st.write(df_hdb_resale)
-
 df_hdb_resale = get_data_hdb_resale_count()
-st.bar_chart(df_hdb_resale, x = "year", y="Number_of_Transaction")
 
 ## Create sidebar filter 1
 # flat_type = df_hdb_resale['flat_type'].unique().tolist()
 # hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
 
-
 ## Create sidebar filter 2
 region = df_hdb_resale['Region'].unique().tolist()
 hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selected_region')
-
 
 ## Create sidebar filter 3
 resale_year = df_hdb_resale['year'].unique().tolist()
 resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
 # resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
 
+## Create Masks
+# mask_town = df_hdb_resale['town'].isin(hdb_town_selected)
+## creates masks for years slicer
+mask_years_sum = df_hdb_resale['year'].between(resale_year_selected[0], resale_year_selected[1])
+## creates masks for region
+mask_region_sum = df_hdb_resale['Region'] == hdb_region_selected
 
-# Session 2
+## apply mask to the data
+df_hdb_resale_filtered = df_hdb_resale[mask_years_sum & mask_region_sum]
+df_hdb_resale_pivot = pd.pivot_table(df_hdb_resale_filtered, values='Number_of_Transaction', index=['town'], columns=['year'], aggfunc='mean')
+
+# Session 1 number of Resale transaction 
+st.subheader('Session 1: Number of HDB resale transaction by year')
+
+# def get_data_hdb_resale_count_pivot():
+#     df = get_data_hdb_resale_count()
+#     df_hdb_resale_pivot = pd.pivot_table(df, values='Number_of_Transaction', index=['town'], columns=['year'], aggfunc='mean')
+#     return df_hdb_resale_pivot
+
+
+
+# df_hdb_resale = get_data_hdb_resale_count_pivot()
+if st.checkbox('Show raw data'):
+    st.subheader('Raw data')
+    st.write(df_hdb_resale_pivot)
+
+
+# df_hdb_resale = get_data_hdb_resale_count()
+st.bar_chart(df_hdb_resale_filtered, x = "year", y="Number_of_Transaction")
+
+#### <------------------------ Session 2  ---------------------------> ####
+
+## Create sidebar filter 1
+# flat_type = df_hdb_resale['flat_type'].unique().tolist()
+# hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
+
+## Create sidebar filter 2
+##  region = df_hdb_resale['Region'].unique().tolist()
+# hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selected_region')
+
+# ## Create sidebar filter 3
+# resale_year = df_hdb_resale['year'].unique().tolist()
+# resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
+# # resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
+
+
+## Session 2 Subtitle
 st.subheader('Session 2: Measure of Interest')
-# create a drop down list
+
+## create a drop down list
 selected_measure = st.selectbox('Choose a Measure that you are interested', ['Resale Price', 'Distance to Hawker Centre', 'Distance to Mall'], key='selected_measure')
 
-# Create variable
+## Create variable
 if selected_measure == 'Resale Price':
     pivot_url = 'https://drive.google.com/file/d/1VniabsUyhxnT77aNUQBDcecYXQ-zHQY3/view?usp=share_link'
     column_name = 'mean_resale_price'
@@ -75,7 +106,7 @@ elif selected_measure == 'Distance to Hawker Centre':
     column_name = 'mean_Hawker_Nearest_Distance'
 df_url='https://drive.google.com/uc?id=' + pivot_url.split('/')[-2]
 
-# create multi-select for town
+## create multi-select for town
 hdb_town = df_hdb_resale['town'].unique().tolist()
 hdb_town_selected = st.multiselect('Select Town that you would like to include: ', hdb_town, hdb_town)
 

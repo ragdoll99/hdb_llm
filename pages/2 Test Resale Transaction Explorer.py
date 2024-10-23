@@ -33,18 +33,18 @@ df_hdb_resale = get_data_hdb_resale_count()
 # flat_type = df_hdb_resale['flat_type'].unique().tolist()
 # hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
 
-
-## Create sidebar filter 2
-region = df_hdb_resale['Region'].unique().tolist()
-hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selected_region')
+## Create multi-select for town
+flat_type = df_hdb_resale['flat_type'].unique().tolist()
+hdb_flattype_selected = st.sidebar.multiselect('Select Flat Type: ', sorted(flat_type), sorted(flat_type))
 
 ## Create sidebar filter 3
 resale_year = df_hdb_resale['year'].unique().tolist()
 resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
 
-## Create multi-select for town
-flat_type = df_hdb_resale['flat_type'].unique().tolist()
-hdb_flattype_selected = st.sidebar.multiselect('Select Flat Type: ', sorted(flat_type), sorted(flat_type))
+## Create sidebar filter 2
+region = df_hdb_resale['Region'].unique().tolist()
+hdb_region_selected = st.sidebar.selectbox('Select Region (Measure of Interest):', region, key='selected_region')
+
 
 ## Create Masks
 # mask_town = df_hdb_resale['town'].isin(hdb_town_selected)

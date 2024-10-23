@@ -111,7 +111,7 @@ elif selected_measure == 'Distance to Hawker Centre':
 df_url='https://drive.google.com/uc?id=' + pivot_url.split('/')[-2]
 
 ## create multi-select for town
-hdb_town = df_hdb_resale['town'].unique().tolist()
+hdb_town = df_hdb_resale_filtered['town'].unique().tolist()
 hdb_town_selected = st.multiselect('Select Town that you would like to include: ', hdb_town, hdb_town)
 
 #Loading the data with measure variable

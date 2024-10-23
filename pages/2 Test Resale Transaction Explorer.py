@@ -74,7 +74,7 @@ if st.checkbox('Show raw data'):
     st.write(df_hdb_resale_pivot)
 
 # df_hdb_resale = get_data_hdb_resale_count()
-st.bar_chart(df_hdb_resale_filtered, x = "year", y="Number_of_Transaction", color="Region")
+st.bar_chart(df_hdb_resale_filtered, x = "year", y="Number_of_Transaction", color="Region",stack=False)
 
 #### <------------------------ Session 2  ---------------------------> ####
 

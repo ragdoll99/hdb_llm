@@ -44,7 +44,7 @@ resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), i
 
 ## Create multi-select for town
 flat_type = df_hdb_resale['flat_type'].unique().tolist()
-hdb_flattype_selected = st.multiselect('Select Town that you would like to include: ', flat_type, flat_type)
+hdb_flattype_selected = st.sidebar.multiselect('Select Town that you would like to include: ', flat_type, flat_type)
 
 ## Create Masks
 # mask_town = df_hdb_resale['town'].isin(hdb_town_selected)

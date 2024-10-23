@@ -16,7 +16,7 @@ st.markdown("""
 This app performs visualization from the open data of SG HDB Resale transaction
 """)
 
-# create sidebar
+#### <--------------------- create sidebar -----------------------> ####
 st.sidebar.header('Select what to display')
 
 #Loading initial data
@@ -33,6 +33,7 @@ df_hdb_resale = get_data_hdb_resale_count()
 # flat_type = df_hdb_resale['flat_type'].unique().tolist()
 # hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
 
+
 ## Create sidebar filter 2
 region = df_hdb_resale['Region'].unique().tolist()
 hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selected_region')
@@ -40,20 +41,25 @@ hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selecte
 ## Create sidebar filter 3
 resale_year = df_hdb_resale['year'].unique().tolist()
 resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
-# resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
+
+## Create multi-select for town
+flat_type = df_hdb_resale['flat_type'].unique().tolist()
+hdb_flattype_selected = st.multiselect('Select Town that you would like to include: ', flat_type, flat_type)
 
 ## Create Masks
 # mask_town = df_hdb_resale['town'].isin(hdb_town_selected)
+mask_flattype_sum = df_hdb_resale['flat_type'].isin(hdb_flattype_selected)
 ## creates masks for years slicer
 mask_years_sum = df_hdb_resale['year'].between(resale_year_selected[0], resale_year_selected[1])
 ## creates masks for region
 mask_region_sum = df_hdb_resale['Region'] == hdb_region_selected
 
 ## apply mask to the data
-df_hdb_resale_filtered = df_hdb_resale[mask_years_sum & mask_region_sum]
+df_hdb_resale_filtered = df_hdb_resale[mask_years_sum & mask_region_sum & mask_flattype_sum]
 df_hdb_resale_pivot = pd.pivot_table(df_hdb_resale_filtered, values='Number_of_Transaction', index=['town'], columns=['year'], aggfunc='mean')
 
-# Session 1 number of Resale transaction 
+#### <--------------------- Session 1 number of Resale transaction  -----------------------> ####
+
 st.subheader('Session 1: Number of HDB resale transaction by year')
 
 # def get_data_hdb_resale_count_pivot():
@@ -62,12 +68,10 @@ st.subheader('Session 1: Number of HDB resale transaction by year')
 #     return df_hdb_resale_pivot
 
 
-
 # df_hdb_resale = get_data_hdb_resale_count_pivot()
 if st.checkbox('Show raw data'):
     st.subheader('Raw data')
     st.write(df_hdb_resale_pivot)
-
 
 # df_hdb_resale = get_data_hdb_resale_count()
 st.bar_chart(df_hdb_resale_filtered, x = "year", y="Number_of_Transaction")
@@ -120,13 +124,14 @@ df_hdb_selected_measure = get_data_hdb_measure()
 
 ## Create Masks
 mask_town = df_hdb_selected_measure['town'].isin(hdb_town_selected)
+mask_flattype = df_hdb_selected_measure['flat_type'].isin(hdb_flattype_selected)
 # creates masks for years slicer
 mask_years = df_hdb_selected_measure['year'].between(resale_year_selected[0], resale_year_selected[1])
 # creates masks for region
 mask_region = df_hdb_selected_measure['Region'] == hdb_region_selected
 
 ## apply mask to the data
-df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town & mask_years & mask_region]
+df_hdb_selected_measure_filtered = df_hdb_selected_measure[mask_town & mask_years & mask_region & mask_flattype]
 
 # create pivot table based on selected measure
 df_pivot = pd.pivot_table(df_hdb_selected_measure_filtered, values=column_name, index=['town'], columns=['year'], aggfunc='mean')

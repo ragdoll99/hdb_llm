@@ -107,7 +107,7 @@ df_url='https://drive.google.com/uc?id=' + pivot_url.split('/')[-2]
 
 ## Create Region selection
 region = df_hdb_resale['Region'].unique().tolist()
-hdb_region_selected = st.sidebar.selectbox('Select Region:', region, key='selected_region')
+hdb_region_selected = st.selectbox('Select Region:', region, key='selected_region')
 ## creates masks for region
 mask_region_sum = df_hdb_resale['Region'] == hdb_region_selected
 

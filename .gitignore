@@ -27,3 +27,7 @@ dist/
 # conda
 .conda/
 .devcontainer
+
+# backup file
+.pages/resale transaction explorer v1.py
+.pages/5 Demo.py

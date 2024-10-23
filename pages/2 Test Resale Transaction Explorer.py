@@ -43,7 +43,7 @@ resale_year = df_hdb_resale['year'].unique().tolist()
 resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
 
 ## Create multi-select for town
-flat_type = df_hdb_resale['flat_type'].unique().tolist()
+flat_type = df_hdb_resale['flat_type'].unique().tolist().sorted()
 hdb_flattype_selected = st.sidebar.multiselect('Select Flat Type: ', flat_type, flat_type)
 
 ## Create Masks

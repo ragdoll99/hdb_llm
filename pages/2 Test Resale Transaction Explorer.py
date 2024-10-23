@@ -13,7 +13,9 @@ import numpy as np
 st.set_page_config(layout="wide")
 st.title(':blue[HDB Resale transaction explorer]')
 st.markdown("""
-This app performs visualization from the open data of SG HDB Resale transaction
+This app performs visualization from the open data of SG HDB Resale transaction. For Session 1, it provide an overview of HDB resale transaction over the years.
+            For Session 2, you can choose out of three measure: Mean Resale Price, Mean distance to mall and Mean distance to hawker centre to explore the subtle 
+            difference between towns.
 """)
 
 #### <--------------------- create sidebar -----------------------> ####

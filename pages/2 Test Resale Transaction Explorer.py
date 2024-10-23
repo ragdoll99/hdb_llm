@@ -55,7 +55,7 @@ mask_years_sum = df_hdb_resale['year'].between(resale_year_selected[0], resale_y
 mask_region_sum = df_hdb_resale['Region'] == hdb_region_selected
 
 ## apply mask to the data
-df_hdb_resale_filtered = df_hdb_resale[mask_years_sum & mask_region_sum & mask_flattype_sum]
+df_hdb_resale_filtered = df_hdb_resale[mask_years_sum & mask_flattype_sum]
 df_hdb_resale_pivot = pd.pivot_table(df_hdb_resale_filtered, values='Number_of_Transaction', index=['town'], columns=['year'], aggfunc='mean')
 
 #### <--------------------- Session 1 number of Resale transaction  -----------------------> ####
@@ -74,7 +74,7 @@ if st.checkbox('Show raw data'):
     st.write(df_hdb_resale_pivot)
 
 # df_hdb_resale = get_data_hdb_resale_count()
-st.bar_chart(df_hdb_resale_filtered, x = "year", y="Number_of_Transaction")
+st.bar_chart(df_hdb_resale_filtered, x = "year", y="Number_of_Transaction", color="Region")
 
 #### <------------------------ Session 2  ---------------------------> ####
 

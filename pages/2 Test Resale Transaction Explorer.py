@@ -37,13 +37,9 @@ df_hdb_resale = get_data_hdb_resale_count()
 flat_type = df_hdb_resale['flat_type'].unique().tolist()
 hdb_flattype_selected = st.sidebar.multiselect('Select Flat Type: ', sorted(flat_type), sorted(flat_type))
 
-## Create sidebar filter 3
+## Create sidebar year
 resale_year = df_hdb_resale['year'].unique().tolist()
 resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
-
-## Create sidebar filter 2
-region = df_hdb_resale['Region'].unique().tolist()
-hdb_region_selected = st.sidebar.selectbox('Select Region (Session 2 Measure of Interest):', region, key='selected_region')
 
 
 ## Create Masks
@@ -51,8 +47,7 @@ hdb_region_selected = st.sidebar.selectbox('Select Region (Session 2 Measure of 
 mask_flattype_sum = df_hdb_resale['flat_type'].isin(hdb_flattype_selected)
 ## creates masks for years slicer
 mask_years_sum = df_hdb_resale['year'].between(resale_year_selected[0], resale_year_selected[1])
-## creates masks for region
-mask_region_sum = df_hdb_resale['Region'] == hdb_region_selected
+
 
 ## apply mask to the data
 df_hdb_resale_filtered = df_hdb_resale[mask_years_sum & mask_flattype_sum]
@@ -110,8 +105,16 @@ elif selected_measure == 'Distance to Hawker Centre':
     column_name = 'mean_Hawker_Nearest_Distance'
 df_url='https://drive.google.com/uc?id=' + pivot_url.split('/')[-2]
 
+## Create Region selection
+region = df_hdb_resale['Region'].unique().tolist()
+hdb_region_selected = st.sidebar.selectbox('Select Region:', region, key='selected_region')
+## creates masks for region
+mask_region_sum = df_hdb_resale['Region'] == hdb_region_selected
+
+df_hdb_resale_region_filtered = df_hdb_resale_filtered[mask_region_sum]
+
 ## create multi-select for town
-hdb_town = df_hdb_resale_filtered['town'].unique().tolist()
+hdb_town = df_hdb_resale_region_filtered['town'].unique().tolist()
 hdb_town_selected = st.multiselect('Select Town that you would like to include: ', hdb_town, hdb_town)
 
 #Loading the data with measure variable

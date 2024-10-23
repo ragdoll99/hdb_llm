@@ -108,7 +108,7 @@ if st.checkbox(f'Show {selected_measure} data'):
 st.bar_chart(df_hdb_selected_measure_filtered, x = "year", y=column_name, color="town", stack=False)
 
 
-
+st.write('hello')
 
 # # create multi-select for town
 # hdb_town = df_hdb_resale['town'].unique().tolist()

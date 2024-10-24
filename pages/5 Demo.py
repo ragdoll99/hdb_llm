@@ -19,14 +19,14 @@ if not check_password():
 st.title("💬 HDB resale Intelligent Bot")
 st.write("Ask me anything about HDB resale transaction")
 
-def on_input_change():
-    user_input = st.session_state.user_input
-    st.session_state.past.append(user_input)
-    st.session_state.generated.append("The messages from Bot\nWith new line")
+# def on_input_change():
+#     user_input = st.session_state.user_input
+#     st.session_state.past.append(user_input)
+#     st.session_state.generated.append("The messages from Bot\nWith new line")
 
-def on_btn_click():
-    del st.session_state.past[:]
-    del st.session_state.generated[:]
+# def on_btn_click():
+#     del st.session_state.past[:]
+#     del st.session_state.generated[:]
 
 message1 = """
 The area of Yishun stands out as the cheapest for HDB resale prices in Singapore, with an average resale price of approximately $375,347. 
@@ -110,7 +110,11 @@ query2 = "What is the process of buying resale hdb"
 query3 = "Which resale hdb has the nearest distance to hawker centre"
 query4 = "What is needed when applying for HFE"
 
-st.session_state.messages.append({"role": "assistant", "content": "How can I help you?"})
+# Store LLM generated responses
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
+
+# st.session_state.messages.append({"role": "assistant", "content": "How can I help you?"})
 st.session_state.messages.append({"role": "user", "content": query1})
 st.session_state.messages.append({"role": "assistant", "content": message1})
 st.session_state.messages.append({"role": "user", "content": query2})

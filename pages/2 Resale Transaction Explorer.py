@@ -64,7 +64,6 @@ st.subheader('Session 1: Number of HDB resale transaction by year')
 #     df_hdb_resale_pivot = pd.pivot_table(df, values='Number_of_Transaction', index=['town'], columns=['year'], aggfunc='mean')
 #     return df_hdb_resale_pivot
 
-
 # df_hdb_resale = get_data_hdb_resale_count_pivot()
 if st.checkbox('Show raw data'):
     st.subheader('Raw data')
@@ -75,24 +74,10 @@ st.bar_chart(df_hdb_resale_filtered, x = "year", y="Number_of_Transaction", colo
 
 #### <------------------------ Session 2  ---------------------------> ####
 
-## Create sidebar filter 1
-# flat_type = df_hdb_resale['flat_type'].unique().tolist()
-# hdb_flattype_selected = st.sidebar.selectbox('Select Flat Type', flat_type, key='selected_type')
-
-## Create sidebar filter 2
-##  region = df_hdb_resale['Region'].unique().tolist()
-# hdb_region_selected = st.sidebar.selectbox('Select Region', region, key='selected_region')
-
-# ## Create sidebar filter 3
-# resale_year = df_hdb_resale['year'].unique().tolist()
-# resale_year_selected = st.sidebar.slider("Select Year", int(min(resale_year)), int(max(resale_year)), (int(min(resale_year)), int(max(resale_year))), 1)
-# # resale_year_selected = st.sidebar.slider("Select Year", int(resale_year.min()), int(resale_year.max()), (int(resale_year.min()), int(resale_year.max())), 1)
-
-
 ## Session 2 Subtitle
 st.subheader('Session 2: Measure of Interest')
 
-## column
+## create column
 col1, col2 = st.columns(2)
 ## create a drop down list
 selected_measure = col1.selectbox('Choose a Measure that you are interested', ['Resale Price', 'Distance to Hawker Centre', 'Distance to Mall'], key='selected_measure')
@@ -108,9 +93,6 @@ elif selected_measure == 'Distance to Hawker Centre':
     pivot_url = 'https://drive.google.com/file/d/12C_xfDkRSYitGQgcMkig8fvOfsw1w-cy/view?usp=share_link'
     column_name = 'mean_Hawker_Nearest_Distance'
 df_url='https://drive.google.com/uc?id=' + pivot_url.split('/')[-2]
-
-
-##
 
 
 ## Create Region selection

@@ -92,8 +92,10 @@ st.bar_chart(df_hdb_resale_filtered, x = "year", y="Number_of_Transaction", colo
 ## Session 2 Subtitle
 st.subheader('Session 2: Measure of Interest')
 
+## column
+col1, col2 = st.columns(2)
 ## create a drop down list
-selected_measure = st.selectbox('Choose a Measure that you are interested', ['Resale Price', 'Distance to Hawker Centre', 'Distance to Mall'], key='selected_measure')
+selected_measure = col1.selectbox('Choose a Measure that you are interested', ['Resale Price', 'Distance to Hawker Centre', 'Distance to Mall'], key='selected_measure')
 
 ## Create variable
 if selected_measure == 'Resale Price':
@@ -109,11 +111,11 @@ df_url='https://drive.google.com/uc?id=' + pivot_url.split('/')[-2]
 
 
 ##
-col1, col2 = st.columns(2)
+
 
 ## Create Region selection
 region = df_hdb_resale['Region'].unique().tolist()
-hdb_region_selected = col1.selectbox('Select Region:', region, key='selected_region')
+hdb_region_selected = col2.selectbox('Select Region:', region, key='selected_region')
 ## creates masks for region
 mask_region_sum = df_hdb_resale['Region'] == hdb_region_selected
 
@@ -121,7 +123,7 @@ df_hdb_resale_region_filtered = df_hdb_resale_filtered[mask_region_sum]
 
 ## create multi-select for town
 hdb_town = df_hdb_resale_region_filtered['town'].unique().tolist()
-hdb_town_selected = col2.multiselect('Select Town that you would like to include: ', hdb_town, hdb_town)
+hdb_town_selected = st.multiselect('Select Town that you would like to include: ', hdb_town, hdb_town)
 
 #Loading the data with measure variable
 def get_data_hdb_measure():

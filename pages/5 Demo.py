@@ -19,14 +19,6 @@ if not check_password():
 st.title("💬 HDB resale Intelligent Bot")
 st.write("Ask me anything about HDB resale transaction")
 
-# def on_input_change():
-#     user_input = st.session_state.user_input
-#     st.session_state.past.append(user_input)
-#     st.session_state.generated.append("The messages from Bot\nWith new line")
-
-# def on_btn_click():
-#     del st.session_state.past[:]
-#     del st.session_state.generated[:]
 
 message1 = """
 The area of Yishun stands out as the cheapest for HDB resale prices in Singapore, with an average resale price of approximately $375,347. 
@@ -139,34 +131,3 @@ if prompt := st.chat_input():
     st.session_state.messages.append({"role": "assistant", "content": response})
     st.chat_message("assistant").write(response)
 
-# st.session_state.setdefault(
-#     'past', 
-#     ['Which area of hdb resale is cheaper',
-#      'What is the process of buying resale hdb', 
-#      'Which resale hdb has the nearest distance to hawker centre', 
-#      'What is needed when applying for HFE']
-# )
-# st.session_state.setdefault(
-#     'generated', 
-#     [{'type': 'normal', 'data': message1},
-#      {'type': 'normal', 'data': message2}, 
-#      {'type': 'normal', 'data': message3}, 
-#      {'type': 'normal', 'data': message4}]
-# )
-
-# chat_placeholder = st.empty()
-
-# with chat_placeholder.container():    
-#     for i in range(len(st.session_state['generated'])):                
-#         message(st.session_state['past'][i], is_user=True, key=f"{i}_user")
-#         message(
-#             st.session_state['generated'][i]['data'], 
-#             key=f"{i}", 
-#             allow_html=True,
-#             is_table=True if st.session_state['generated'][i]['type']=='table' else False
-#         )
-    
-#     st.button("Clear message", on_click=on_btn_click)
-
-# # with st.container():
-# #     st.text_input("User Input:", on_change=on_input_change, key="user_input")

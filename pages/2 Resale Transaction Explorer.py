@@ -107,9 +107,13 @@ elif selected_measure == 'Distance to Hawker Centre':
     column_name = 'mean_Hawker_Nearest_Distance'
 df_url='https://drive.google.com/uc?id=' + pivot_url.split('/')[-2]
 
+
+##
+col1, col2 = st.columns(2)
+
 ## Create Region selection
 region = df_hdb_resale['Region'].unique().tolist()
-hdb_region_selected = st.selectbox('Select Region:', region, key='selected_region')
+hdb_region_selected = col1.selectbox('Select Region:', region, key='selected_region')
 ## creates masks for region
 mask_region_sum = df_hdb_resale['Region'] == hdb_region_selected
 
@@ -117,7 +121,7 @@ df_hdb_resale_region_filtered = df_hdb_resale_filtered[mask_region_sum]
 
 ## create multi-select for town
 hdb_town = df_hdb_resale_region_filtered['town'].unique().tolist()
-hdb_town_selected = st.multiselect('Select Town that you would like to include: ', hdb_town, hdb_town)
+hdb_town_selected = col2.multiselect('Select Town that you would like to include: ', hdb_town, hdb_town)
 
 #Loading the data with measure variable
 def get_data_hdb_measure():

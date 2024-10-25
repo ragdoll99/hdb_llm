@@ -120,13 +120,13 @@ st.session_state.messages.append({"role": "assistant", "content": message4})
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
 
-# Generate a new response if last message is not from assistant
-if prompt := st.chat_input():
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    st.chat_message("user").write(prompt)
-    if st.session_state.messages[-1]["role"] != "assistant":
-        # with st.chat_message("assistant"):
-        with st.spinner("Thinking..."):        
-            response = generate_answer(prompt)
-    st.session_state.messages.append({"role": "assistant", "content": response})
-    st.chat_message("assistant").write(response)
+# # Generate a new response if last message is not from assistant
+# if prompt := st.chat_input():
+#     st.session_state.messages.append({"role": "user", "content": prompt})
+#     st.chat_message("user").write(prompt)
+#     if st.session_state.messages[-1]["role"] != "assistant":
+#         # with st.chat_message("assistant"):
+#         with st.spinner("Thinking..."):        
+#             response = generate_answer(prompt)
+#     st.session_state.messages.append({"role": "assistant", "content": response})
+#     st.chat_message("assistant").write(response)

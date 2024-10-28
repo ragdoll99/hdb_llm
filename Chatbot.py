@@ -22,7 +22,8 @@ if not check_password():
 # endregion <--------- Streamlit App Configuration --------->
 
 st.title(":blue[💬 HDB resale Intelligent Bot]")
-st.write(
+container = st.container(border=True)
+container.write(
 """
 
 IMPORTANT NOTICE: This web application is a prototype developed for educational purposes only. The information provided here is NOT intended for real-world usage and should not be relied upon for making any decisions, especially those related to financial, legal, or healthcare matters.

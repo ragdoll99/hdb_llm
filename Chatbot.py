@@ -23,7 +23,7 @@ if not check_password():
 
 st.title(":blue[💬 HDB resale Intelligent Bot]")
 container = st.container(border=True)
-with st.expander("Important Notice")
+with st.expander("Important Notice"):
     container.write(
     """
 

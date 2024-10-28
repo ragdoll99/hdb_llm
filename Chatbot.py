@@ -15,8 +15,8 @@ st.set_page_config(
     page_title="💬 HDB resale Intelligent Bot"
 )
 
-# Do not continue if check_password is not True.  
-if not check_password(): 
+st.sidebar.header('Importan Notice')
+with st.sidebar.expander("Important Notice"):
     st.write(
     """
 
@@ -28,23 +28,27 @@ if not check_password():
 
     """
     )
+
+
+# Do not continue if check_password is not True.  
+if not check_password(): 
     st.stop()
 
 # endregion <--------- Streamlit App Configuration --------->
 
-st.title(":blue[💬 HDB resale Intelligent Bot]")
-with st.expander("Important Notice"):
-    st.write(
-    """
+# st.title(":blue[💬 HDB resale Intelligent Bot]")
+# with st.expander("Important Notice"):
+#     st.write(
+#     """
 
-    IMPORTANT NOTICE: This web application is a prototype developed for educational purposes only. The information provided here is NOT intended for real-world usage and should not be relied upon for making any decisions, especially those related to financial, legal, or healthcare matters.
+#     IMPORTANT NOTICE: This web application is a prototype developed for educational purposes only. The information provided here is NOT intended for real-world usage and should not be relied upon for making any decisions, especially those related to financial, legal, or healthcare matters.
 
-    Furthermore, please be aware that the LLM may generate inaccurate or incorrect information. You assume full responsibility for how you use any generated output.
+#     Furthermore, please be aware that the LLM may generate inaccurate or incorrect information. You assume full responsibility for how you use any generated output.
 
-    Always consult with qualified professionals for accurate and personalized advice.
+#     Always consult with qualified professionals for accurate and personalized advice.
 
-    """
-    )
+#     """
+#     )
 
 
 st.write("Ask me anything about HDB resale transaction")
